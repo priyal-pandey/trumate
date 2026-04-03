@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import axios from "axios";
 
@@ -44,27 +45,85 @@ function PostForm({ fetchPosts, user }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Create Post</h2>
+    <form onSubmit={handleSubmit} className="space-y-4">
 
-      <input name="title" placeholder="Title" value={form.title} onChange={handleChange} />
-      <input name="location" placeholder="Location" value={form.location} onChange={handleChange} />
-      <input name="rent" type="number" placeholder="Rent" value={form.rent} onChange={handleChange} />
+      {/* Row 1 */}
+      <div className="grid md:grid-cols-2 gap-4">
+        <input
+          name="title"
+          placeholder="Title"
+          value={form.title}
+          onChange={handleChange}
+          className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+        />
 
-      <select name="roomType" value={form.roomType} onChange={handleChange}>
-        <option value="Shared">Shared</option>
-        <option value="Private">Private</option>
-      </select>
+        <input
+          name="location"
+          placeholder="Location"
+          value={form.location}
+          onChange={handleChange}
+          className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+        />
+      </div>
 
-  
-      <input name="lifestyle" placeholder="Lifestyle (e.g. Non-smoker)" value={form.lifestyle} onChange={handleChange} />
+      {/* Row 2 */}
+      <div className="grid md:grid-cols-2 gap-4">
+        <input
+          name="rent"
+          type="number"
+          placeholder="Rent (₹)"
+          value={form.rent}
+          onChange={handleChange}
+          className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+        />
 
+        <select
+          name="roomType"
+          value={form.roomType}
+          onChange={handleChange}
+          className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+        >
+          <option value="Shared">Shared</option>
+          <option value="Private">Private</option>
+        </select>
+      </div>
 
-      <input name="preferences" placeholder="Preferences (e.g. Clean roommate)" value={form.preferences} onChange={handleChange} />
+      {/* Lifestyle */}
+      <input
+        name="lifestyle"
+        placeholder="Lifestyle (e.g. Non-smoker)"
+        value={form.lifestyle}
+        onChange={handleChange}
+        className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+      />
 
-      <input name="description" placeholder="Description" value={form.description} onChange={handleChange} />
+      {/* Preferences */}
+      <input
+        name="preferences"
+        placeholder="Preferences (e.g. Clean roommate)"
+        value={form.preferences}
+        onChange={handleChange}
+        className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+      />
 
-      <button type="submit">Create Post</button>
+      {/* Description */}
+      <textarea
+        name="description"
+        placeholder="Description"
+        value={form.description}
+        onChange={handleChange}
+        rows={3}
+        className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+      />
+
+      {/* Button */}
+      <button
+        type="submit"
+        className="w-full py-3 bg-[#b19081] text-white rounded-lg hover:opacity-90 transition"
+      >
+        Create Listing
+      </button>
+
     </form>
   );
 }

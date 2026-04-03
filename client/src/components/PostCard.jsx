@@ -5,7 +5,6 @@ function PostCard({ post, user, fetchPosts }) {
   const [loadingComplete, setLoadingComplete] = useState(false);
   const [loadingInterest, setLoadingInterest] = useState(false);
 
-  // Send interest
   const handleInterest = async () => {
     try {
       setLoadingInterest(true);
@@ -15,11 +14,8 @@ function PostCard({ post, user, fetchPosts }) {
         postId: post._id
       });
 
-      alert("Interest sent!");
-      
-      // refresh data
       await fetchPosts();
-
+      alert("Interest sent!");
     } catch (err) {
       console.error(err);
     } finally {
@@ -27,7 +23,6 @@ function PostCard({ post, user, fetchPosts }) {
     }
   };
 
-  // Mark post as completed
   const handleComplete = async () => {
     try {
       setLoadingComplete(true);
@@ -36,9 +31,7 @@ function PostCard({ post, user, fetchPosts }) {
         `http://localhost:5000/api/posts/${post._id}/complete`
       );
 
-      // Auto refresh after update
       await fetchPosts();
-
     } catch (err) {
       console.error(err);
     } finally {
@@ -49,60 +42,96 @@ function PostCard({ post, user, fetchPosts }) {
   const isOwner = post.user?._id === user._id;
 
   return (
-    <div>
-      <hr />
+    <div className="space-y-3">
 
-      <h3>{post.title}</h3>
+      {/* Title */}
+      <h3 className="text-xl font-semibold">
+        {post.title}
+      </h3>
 
-      <p><strong>Posted by:</strong> {post.user?.name}</p>
-
-      {/* Owner Details */}
-      <p><strong>Phone:</strong> {post.user?.phone}</p>
-      <p><strong>Age:</strong> {post.user?.age}</p>
-      <p><strong>Gender:</strong> {post.user?.gender}</p>
-      <p><strong>College:</strong> {post.user?.college}</p>
-
-      <p>{post.location} | ₹{post.rent}</p>
-      <p>{post.roomType}</p>
-
-      <p><strong>Lifestyle:</strong> {post.lifestyle}</p>
-      <p><strong>Preferences:</strong> {post.preferences}</p>
-
-      <p>{post.description}</p>
-
-      {/* Date */}
-      <p>
-        <small>
-          Posted on: {new Date(post.createdAt).toLocaleDateString()}
-        </small>
+      {/* Location + Rent */}
+      <p className="text-gray-500">
+        {post.location} •{" "}
+        <span className="text-[#b19081] font-medium">
+          ₹{post.rent}
+        </span>
       </p>
 
-      {/* Status */}
-      <p>
-        Status:{" "}
-        <strong style={{ color: post.status === "completed" ? "red" : "green" }}>
+      {/* Tags */}
+      <div className="flex gap-2 flex-wrap">
+        <span className="text-xs bg-[#ead58f] px-3 py-1 rounded-full">
+          {post.roomType}
+        </span>
+
+        {post.lifestyle && (
+          <span className="text-xs bg-[#b8d8d8] px-3 py-1 rounded-full">
+            {post.lifestyle}
+          </span>
+        )}
+      </div>
+
+      {/* Description */}
+      <p className="text-sm text-gray-700">
+        {post.description}
+      </p>
+
+      {/* User Info */}
+      <div className="text-sm text-gray-600 space-y-1 pt-3">
+        <p className="font-semibold">{post.user?.name}</p>
+        <p>{post.user?.college}</p>
+        <p>
+          {post.user?.age} • {post.user?.gender}
+        </p>
+        <p>{post.user?.phone}</p>
+      </div>
+
+      {/* Footer */}
+      <div className="flex justify-between items-center pt-2">
+        <p className="text-xs text-gray-400">
+          {new Date(post.createdAt).toLocaleDateString()}
+        </p>
+
+        <span
+          className={`text-xs px-3 py-1 rounded-full ${
+            post.status === "completed"
+              ? "bg-[#e8b4b8]"
+              : "bg-[#ead58f]"
+          }`}
+        >
           {post.status}
-        </strong>
-      </p>
+        </span>
+      </div>
 
-      {/* Owner actions */}
-      {isOwner && post.status === "available" && (
-        <button onClick={handleComplete} disabled={loadingComplete}>
-          {loadingComplete ? "Updating..." : "Mark as Completed"}
-        </button>
-      )}
+      {/* Actions */}
+      <div className="pt-2">
 
-      {/* Non-owner actions */}
-      {!isOwner && post.status === "available" && (
-        <button onClick={handleInterest} disabled={loadingInterest}>
-          {loadingInterest ? "Sending..." : "I'm Interested ❤️"}
-        </button>
-      )}
+        {isOwner && post.status === "available" && (
+          <button
+            onClick={handleComplete}
+            disabled={loadingComplete}
+            className="w-full py-2 bg-[#b19081] text-white rounded-lg shadow hover:opacity-90 transition"
+          >
+            {loadingComplete ? "Updating..." : "Mark as Completed"}
+          </button>
+        )}
 
-      {/* Completed state */}
-      {post.status === "completed" && (
-        <p><strong>Room Filled</strong></p>
-      )}
+        {!isOwner && post.status === "available" && (
+          <button
+            onClick={handleInterest}
+            disabled={loadingInterest}
+            className="w-full py-2 bg-[#b19081] text-white rounded-lg shadow hover:opacity-90 transition"
+          >
+            {loadingInterest ? "Sending..." : "I'm Interested ❤️"}
+          </button>
+        )}
+
+        {post.status === "completed" && (
+          <p className="text-center text-sm text-gray-500">
+            Room Filled
+          </p>
+        )}
+
+      </div>
     </div>
   );
 }

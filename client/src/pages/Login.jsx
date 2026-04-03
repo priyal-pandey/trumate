@@ -26,13 +26,9 @@ function Login({ setUser }) {
         form
       );
 
-      // Save to state
       setUser(res.data.user);
-
-      // Save to localStorage
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      // Redirect
       navigate("/dashboard");
 
     } catch (err) {
@@ -42,20 +38,51 @@ function Login({ setUser }) {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#f7efe5] to-[#efe0d2] px-4">
 
-      <form onSubmit={handleSubmit}>
-        <input name="email" placeholder="Email" onChange={handleChange} />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          onChange={handleChange}
-        />
+      <div className="w-full max-w-md bg-white rounded-2xl p-8 shadow-[10px_10px_0px_rgba(177,144,129,0.25)] border border-[#eadccf]">
 
-        <button type="submit">Login</button>
-      </form>
+        <h2 className="text-2xl font-bold text-center text-[#b19081] mb-6">
+          Login to Trumate
+        </h2>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+
+          <input
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+          />
+
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            onChange={handleChange}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+          />
+
+          <button
+            type="submit"
+            className="w-full bg-[#b19081] text-white py-2 rounded-lg shadow hover:opacity-90 transition"
+          >
+            Login
+          </button>
+
+        </form>
+
+        <p className="text-sm text-center mt-4 text-gray-500">
+          Don’t have an account?{" "}
+          <span
+            className="text-[#b19081] cursor-pointer"
+            onClick={() => navigate("/signup")}
+          >
+            Signup
+          </span>
+        </p>
+
+      </div>
     </div>
   );
 }

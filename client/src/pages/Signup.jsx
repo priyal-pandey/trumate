@@ -26,13 +26,8 @@ function Signup({ setUser }) {
     e.preventDefault();
 
     try {
-      // Register
-      await axios.post(
-        "http://localhost:5000/api/auth/register",
-        form
-      );
+      await axios.post("http://localhost:5000/api/auth/register", form);
 
-      // Auto login
       const res = await axios.post(
         "http://localhost:5000/api/auth/login",
         {
@@ -41,11 +36,9 @@ function Signup({ setUser }) {
         }
       );
 
-      // Save user
       setUser(res.data.user);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      // Redirect
       navigate("/dashboard");
 
     } catch (err) {
@@ -55,30 +48,78 @@ function Signup({ setUser }) {
   };
 
   return (
-    <div>
-      <h2>Signup</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#f7efe5] to-[#efe0d2] px-4">
 
-      <form onSubmit={handleSubmit}>
-        <input name="name" placeholder="Name" onChange={handleChange} />
-        <input name="email" placeholder="Email" onChange={handleChange} />
-        <input name="password" type="password"
-        placeholder="Password"
-         onChange={handleChange} />
+      <div className="w-full max-w-lg bg-white rounded-2xl p-8 shadow-[10px_10px_0px_rgba(177,144,129,0.25)] border border-[#eadccf]">
 
-        <input name="phone" placeholder="Phone" onChange={handleChange} />
-        <input name="age" type="number" placeholder="Age" onChange={handleChange} />
+        <h2 className="text-2xl font-bold text-center text-[#b19081] mb-6">
+          Create Your Account
+        </h2>
 
-        <select name="gender" onChange={handleChange}>
-          <option value="">Select Gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
+        <form onSubmit={handleSubmit} className="grid gap-4">
 
-        <input name="college" placeholder="College" onChange={handleChange} />
+          <input name="name" placeholder="Name" onChange={handleChange}
+            className="input-style" />
 
-        <button type="submit">Signup</button>
-      </form>
+          <input name="email" placeholder="Email" onChange={handleChange}
+            className="input-style" />
+
+          <input name="password" type="password" placeholder="Password" onChange={handleChange}
+            className="input-style" />
+
+          <input name="phone" placeholder="Phone" onChange={handleChange}
+            className="input-style" />
+
+          <input name="age" type="number" placeholder="Age" onChange={handleChange}
+            className="input-style" />
+
+          <select name="gender" onChange={handleChange}
+            className="input-style">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <input name="college" placeholder="College" onChange={handleChange}
+            className="input-style" />
+
+          <button
+            type="submit"
+            className="w-full bg-[#b19081] text-white py-2 rounded-lg shadow hover:opacity-90 transition"
+          >
+            Signup
+          </button>
+
+        </form>
+
+        <p className="text-sm text-center mt-4 text-gray-500">
+          Already have an account?{" "}
+          <span
+            className="text-[#b19081] cursor-pointer"
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </span>
+        </p>
+
+      </div>
+
+      {/* Reusable input style */}
+      <style>{`
+        .input-style {
+          width: 100%;
+          padding: 10px 14px;
+          border: 1px solid #d1d5db;
+          border-radius: 8px;
+          outline: none;
+        }
+        .input-style:focus {
+          border-color: #b19081;
+          box-shadow: 0 0 0 2px rgba(177,144,129,0.2);
+        }
+      `}</style>
+
     </div>
   );
 }

@@ -22,30 +22,50 @@ function InterestList({ user }) {
   }, [user]);
 
   return (
-    <div>
-      <h2>People Interested in Your Posts</h2>
+    <div className="space-y-4">
 
       {interests.length === 0 ? (
-        <p>No one yet</p>
+        <p className="text-gray-500">No one yet</p>
       ) : (
         interests.map((item) => (
-          <div key={item._id}>
-            <p>
-              <strong>{item.user?.name}</strong> is interested in{" "}
-              <strong>{item.post?.title}</strong>
-            </p>
+          <div
+            key={item._id}
+            className="bg-white p-5 rounded-xl 
+            shadow-[6px_6px_0px_rgba(177,144,129,0.2)]"
+          >
+            {/* Header */}
+            <div className="mb-3">
+              <p className="text-lg font-semibold">
+                {item.user?.name}
+              </p>
 
-            {/* Full user details */}
-            <p>Email: {item.user?.email}</p>
-            <p>Phone: {item.user?.phone}</p>
-            <p>Age: {item.user?.age}</p>
-            <p>Gender: {item.user?.gender}</p>
-            <p>College: {item.user?.college}</p>
+              <p className="text-sm text-gray-500">
+                Interested in:{" "}
+                <span className="font-medium text-[#b19081]">
+                  {item.post?.title}
+                </span>
+              </p>
+            </div>
 
-            <hr />
+            {/* User Details */}
+            <div className="grid md:grid-cols-2 gap-2 text-sm text-gray-600 mb-3">
+              <p><span className="font-medium">Email:</span> {item.user?.email}</p>
+              <p><span className="font-medium">Phone:</span> {item.user?.phone}</p>
+              <p><span className="font-medium">Age:</span> {item.user?.age}</p>
+              <p><span className="font-medium">Gender:</span> {item.user?.gender}</p>
+              <p className="md:col-span-2">
+                <span className="font-medium">College:</span> {item.user?.college}
+              </p>
+            </div>
+
+            {/* Tag */}
+            <span className="text-xs bg-[#b8d8d8] px-3 py-1 rounded-full">
+              Interested User
+            </span>
           </div>
         ))
       )}
+
     </div>
   );
 }

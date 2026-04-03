@@ -22,23 +22,49 @@ function PastListings({ user }) {
   }, [user]);
 
   return (
-    <div>
-      <h2>Past Listings</h2>
-
+    <div className="space-y-4">
       {posts.length === 0 ? (
-        <p>No past listings</p>
+        <p className="text-gray-500">No past listings</p>
       ) : (
         posts.map((post) => (
-          <div key={post._id}>
-            <h3>{post.title}</h3>
-            <p>{post.location} | ₹{post.rent}</p>
-            <p>Status: {post.status}</p>
+          <div
+            key={post._id}
+            className="bg-white p-5 rounded-xl 
+            shadow-[6px_6px_0px_rgba(177,144,129,0.2)]"
+          >
+            {/* Title */}
+            <h3 className="text-lg font-semibold mb-1">
+              {post.title}
+            </h3>
 
-            <p>
-              Posted on: {new Date(post.createdAt).toLocaleDateString()}
+            {/* Location + Rent */}
+            <p className="text-sm text-gray-600 mb-2">
+              {post.location} |{" "}
+              <span className="font-medium text-[#b19081]">
+                ₹{post.rent}
+              </span>
             </p>
 
-            <hr />
+            {/* Status */}
+            <p className="text-sm mb-2">
+              Status:{" "}
+              <span className="font-medium capitalize">
+                {post.status}
+              </span>
+            </p>
+
+            {/* Date */}
+            <p className="text-xs text-gray-500">
+              Posted on:{" "}
+              {new Date(post.createdAt).toLocaleDateString()}
+            </p>
+
+            {/* Tag */}
+            <div className="mt-3">
+              <span className="text-xs bg-[#b8d8d8] px-3 py-1 rounded-full">
+                Archived
+              </span>
+            </div>
           </div>
         ))
       )}

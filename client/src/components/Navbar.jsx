@@ -10,21 +10,58 @@ function Navbar({ user, setUser }) {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "space-between" }}>
-      <h2 onClick={() => navigate("/")}>Roommate Finder</h2>
+    <div className="bg-white px-8 py-4 flex justify-between items-center shadow-sm">
 
-      {user ? (
-        <div>
-          <span>Hi, {user.name}</span>
-          <button onClick={() => navigate("/dashboard")}>Dashboard</button>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      ) : (
-        <div>
-          <button onClick={() => navigate("/login")}>Login</button>
-          <button onClick={() => navigate("/signup")}>Signup</button>
-        </div>
-      )}
+      {/* Brand */}
+      <h1
+        onClick={() => navigate("/")}
+        className="text-2xl font-bold text-[#b19081] tracking-wide cursor-pointer"
+      >
+        TruMate
+      </h1>
+
+      {/* Right Side */}
+      <div className="flex items-center gap-4">
+
+        {user ? (
+          <>
+            <span className="text-sm text-gray-600">
+              Hi, {user.name}
+            </span>
+
+            <button
+              onClick={() => navigate("/dashboard")}
+              className="text-gray-600 hover:text-[#b19081] transition"
+            >
+              Dashboard
+            </button>
+
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 bg-[#b19081] text-white rounded-lg hover:opacity-90 transition"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={() => navigate("/login")}
+              className="text-gray-600 hover:text-[#b19081] transition"
+            >
+              Login
+            </button>
+
+            <button
+              onClick={() => navigate("/signup")}
+              className="px-4 py-2 bg-[#b19081] text-white rounded-lg hover:opacity-90 transition"
+            >
+              Signup
+            </button>
+          </>
+        )}
+
+      </div>
     </div>
   );
 }
