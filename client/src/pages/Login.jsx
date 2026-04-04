@@ -38,11 +38,11 @@ function Login({ setUser }) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#f7efe5] to-[#efe0d2] px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#0A0A0A] via-[#111111] to-[#0A0A0A] px-4 text-white">
 
-      <div className="w-full max-w-md bg-white rounded-2xl p-8 shadow-[10px_10px_0px_rgba(177,144,129,0.25)] border border-[#eadccf]">
+      <div className="w-full max-w-md bg-[#111111] rounded-2xl p-8 border border-[#262626] shadow-[0_0_25px_rgba(99,102,241,0.15)]">
 
-        <h2 className="text-2xl font-bold text-center text-[#b19081] mb-6">
+        <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-[#6366F1] to-[#14B8A6] bg-clip-text text-transparent">
           Login to Trumate
         </h2>
 
@@ -52,7 +52,7 @@ function Login({ setUser }) {
             name="email"
             placeholder="Email"
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+            className="w-full px-4 py-2 bg-[#0A0A0A] border border-[#262626] rounded-lg text-white placeholder-[#71717A] focus:outline-none focus:ring-2 focus:ring-[#6366F1]"
           />
 
           <input
@@ -60,22 +60,22 @@ function Login({ setUser }) {
             type="password"
             placeholder="Password"
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+            className="w-full px-4 py-2 bg-[#0A0A0A] border border-[#262626] rounded-lg text-white placeholder-[#71717A] focus:outline-none focus:ring-2 focus:ring-[#14B8A6]"
           />
 
           <button
             type="submit"
-            className="w-full bg-[#b19081] text-white py-2 rounded-lg shadow hover:opacity-90 transition"
+            className="w-full py-2 rounded-lg bg-gradient-to-r from-[#6366F1] to-[#14B8A6] text-black font-medium hover:opacity-90 transition shadow-[0_0_15px_rgba(99,102,241,0.25)]"
           >
             Login
           </button>
 
         </form>
 
-        <p className="text-sm text-center mt-4 text-gray-500">
+        <p className="text-sm text-center mt-4 text-[#A1A1AA]">
           Don’t have an account?{" "}
           <span
-            className="text-[#b19081] cursor-pointer"
+            className="text-[#6366F1] cursor-pointer hover:text-[#14B8A6] transition"
             onClick={() => navigate("/signup")}
           >
             Signup

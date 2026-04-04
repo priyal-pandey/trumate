@@ -48,55 +48,84 @@ function Signup({ setUser }) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#f7efe5] to-[#efe0d2] px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#0A0A0A] via-[#111111] to-[#0A0A0A] px-4 text-white">
 
-      <div className="w-full max-w-lg bg-white rounded-2xl p-8 shadow-[10px_10px_0px_rgba(177,144,129,0.25)] border border-[#eadccf]">
+      <div className="w-full max-w-lg bg-[#111111] rounded-2xl p-8 border border-[#262626] shadow-[0_0_25px_rgba(99,102,241,0.15)]">
 
-        <h2 className="text-2xl font-bold text-center text-[#b19081] mb-6">
+        <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-[#6366F1] to-[#14B8A6] bg-clip-text text-transparent">
           Create Your Account
         </h2>
 
         <form onSubmit={handleSubmit} className="grid gap-4">
 
-          <input name="name" placeholder="Name" onChange={handleChange}
-            className="input-style" />
+          <input
+            name="name"
+            placeholder="Name"
+            onChange={handleChange}
+            className="w-full px-4 py-2 bg-[#0A0A0A] border border-[#262626] rounded-lg text-white placeholder-[#71717A] focus:outline-none focus:ring-2 focus:ring-[#6366F1]"
+          />
 
-          <input name="email" placeholder="Email" onChange={handleChange}
-            className="input-style" />
+          <input
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
+            className="w-full px-4 py-2 bg-[#0A0A0A] border border-[#262626] rounded-lg text-white placeholder-[#71717A] focus:outline-none focus:ring-2 focus:ring-[#6366F1]"
+          />
 
-          <input name="password" type="password" placeholder="Password" onChange={handleChange}
-            className="input-style" />
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            onChange={handleChange}
+            className="w-full px-4 py-2 bg-[#0A0A0A] border border-[#262626] rounded-lg text-white placeholder-[#71717A] focus:outline-none focus:ring-2 focus:ring-[#14B8A6]"
+          />
 
-          <input name="phone" placeholder="Phone" onChange={handleChange}
-            className="input-style" />
+          <input
+            name="phone"
+            placeholder="Phone"
+            onChange={handleChange}
+            className="w-full px-4 py-2 bg-[#0A0A0A] border border-[#262626] rounded-lg text-white placeholder-[#71717A] focus:outline-none focus:ring-2 focus:ring-[#6366F1]"
+          />
 
-          <input name="age" type="number" placeholder="Age" onChange={handleChange}
-            className="input-style" />
+          <input
+            name="age"
+            type="number"
+            placeholder="Age"
+            onChange={handleChange}
+            className="w-full px-4 py-2 bg-[#0A0A0A] border border-[#262626] rounded-lg text-white placeholder-[#71717A] focus:outline-none focus:ring-2 focus:ring-[#6366F1]"
+          />
 
-          <select name="gender" onChange={handleChange}
-            className="input-style">
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
+          <select
+            name="gender"
+            onChange={handleChange}
+            className="w-full px-4 py-2 bg-[#0A0A0A] border border-[#262626] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#14B8A6]"
+          >
+            <option value="" className="text-black">Select Gender</option>
+            <option value="Male" className="text-black">Male</option>
+            <option value="Female" className="text-black">Female</option>
+            <option value="Other" className="text-black">Other</option>
           </select>
 
-          <input name="college" placeholder="College" onChange={handleChange}
-            className="input-style" />
+          <input
+            name="college"
+            placeholder="College"
+            onChange={handleChange}
+            className="w-full px-4 py-2 bg-[#0A0A0A] border border-[#262626] rounded-lg text-white placeholder-[#71717A] focus:outline-none focus:ring-2 focus:ring-[#6366F1]"
+          />
 
           <button
             type="submit"
-            className="w-full bg-[#b19081] text-white py-2 rounded-lg shadow hover:opacity-90 transition"
+            className="w-full py-2 rounded-lg bg-gradient-to-r from-[#6366F1] to-[#14B8A6] text-black font-medium hover:opacity-90 transition shadow-[0_0_15px_rgba(99,102,241,0.25)]"
           >
             Signup
           </button>
 
         </form>
 
-        <p className="text-sm text-center mt-4 text-gray-500">
+        <p className="text-sm text-center mt-4 text-[#A1A1AA]">
           Already have an account?{" "}
           <span
-            className="text-[#b19081] cursor-pointer"
+            className="text-[#6366F1] cursor-pointer hover:text-[#14B8A6] transition"
             onClick={() => navigate("/login")}
           >
             Login
@@ -104,22 +133,6 @@ function Signup({ setUser }) {
         </p>
 
       </div>
-
-      {/* Reusable input style */}
-      <style>{`
-        .input-style {
-          width: 100%;
-          padding: 10px 14px;
-          border: 1px solid #d1d5db;
-          border-radius: 8px;
-          outline: none;
-        }
-        .input-style:focus {
-          border-color: #b19081;
-          box-shadow: 0 0 0 2px rgba(177,144,129,0.2);
-        }
-      `}</style>
-
     </div>
   );
 }

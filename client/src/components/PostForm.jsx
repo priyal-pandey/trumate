@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import axios from "axios";
 
@@ -44,8 +43,14 @@ function PostForm({ fetchPosts, user }) {
     }
   };
 
+  const inputStyle =
+    "w-full px-4 py-2 bg-[#0A0A0A] border border-[#262626] rounded-lg text-white placeholder-[#71717A] focus:outline-none focus:ring-2 focus:ring-[#6366F1]";
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4 p-6 rounded-2xl bg-[#111111] border border-[#262626] shadow-[0_0_20px_rgba(0,0,0,0.6)]"
+    >
 
       {/* Row 1 */}
       <div className="grid md:grid-cols-2 gap-4">
@@ -54,7 +59,7 @@ function PostForm({ fetchPosts, user }) {
           placeholder="Title"
           value={form.title}
           onChange={handleChange}
-          className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+          className={inputStyle}
         />
 
         <input
@@ -62,7 +67,7 @@ function PostForm({ fetchPosts, user }) {
           placeholder="Location"
           value={form.location}
           onChange={handleChange}
-          className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+          className={inputStyle}
         />
       </div>
 
@@ -74,17 +79,17 @@ function PostForm({ fetchPosts, user }) {
           placeholder="Rent (₹)"
           value={form.rent}
           onChange={handleChange}
-          className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+          className={inputStyle}
         />
 
         <select
           name="roomType"
           value={form.roomType}
           onChange={handleChange}
-          className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+          className={inputStyle}
         >
-          <option value="Shared">Shared</option>
-          <option value="Private">Private</option>
+          <option value="Shared" className="text-black">Shared</option>
+          <option value="Private" className="text-black">Private</option>
         </select>
       </div>
 
@@ -94,7 +99,7 @@ function PostForm({ fetchPosts, user }) {
         placeholder="Lifestyle (e.g. Non-smoker)"
         value={form.lifestyle}
         onChange={handleChange}
-        className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+        className={inputStyle}
       />
 
       {/* Preferences */}
@@ -103,7 +108,7 @@ function PostForm({ fetchPosts, user }) {
         placeholder="Preferences (e.g. Clean roommate)"
         value={form.preferences}
         onChange={handleChange}
-        className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+        className={inputStyle}
       />
 
       {/* Description */}
@@ -113,13 +118,13 @@ function PostForm({ fetchPosts, user }) {
         value={form.description}
         onChange={handleChange}
         rows={3}
-        className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b19081]"
+        className={inputStyle}
       />
 
       {/* Button */}
       <button
         type="submit"
-        className="w-full py-3 bg-[#b19081] text-white rounded-lg hover:opacity-90 transition"
+        className="w-full py-3 rounded-lg bg-gradient-to-r from-[#6366F1] to-[#14B8A6] text-black font-medium hover:opacity-90 transition shadow-[0_0_15px_rgba(99,102,241,0.25)]"
       >
         Create Listing
       </button>
