@@ -34,16 +34,9 @@ cd server
 npm install
 ```
 
-Create a .env file inside the server folder:
-```bash
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-```
-
 Run the backend:
 ```bash
-npm start
+node index.js
 ```
 
 The backend will run on:
@@ -55,7 +48,8 @@ Add your connection string to the .env file as MONGO_URI
 
 ### 5. Environment Variables
 
-Backend .env:
+Create a .env file inside the server folder:
+
 ```bash
 PORT=5000
 MONGO_URI=your_mongodb_uri
